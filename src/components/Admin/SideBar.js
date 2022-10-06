@@ -20,6 +20,7 @@ import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
 import sidebarBg from "../../assets/bg2.jpg";
 import "./Sidebar.scss";
+import { Link } from "react-router-dom";
 
 const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
   return (
@@ -51,11 +52,18 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
 
         <SidebarContent>
           <Menu iconShape="circle">
-            <MenuItem icon={<MdDashboard />}>dashboard</MenuItem>
+            <MenuItem icon={<MdDashboard />}>
+              Dashboard
+              <Link to="/admins" />
+            </MenuItem>
           </Menu>
           <Menu iconShape="circle">
             <SubMenu icon={<FaGem />} title="Features">
-              <MenuItem> Manage Users</MenuItem>
+              <MenuItem>
+                {" "}
+                Manage Users
+                <Link to="/admins/manage-users" />
+              </MenuItem>
               <MenuItem> Manage Quiz</MenuItem>
               <MenuItem> Manage Questions</MenuItem>
             </SubMenu>
