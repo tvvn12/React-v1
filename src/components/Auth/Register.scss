@@ -1,0 +1,55 @@
+$width_responsive: 700px;
+.resgiter-container {
+  @media screen and (max-width: $width_responsive) {
+    justify-content: center;
+  }
+  .content-form-left {
+    //do Smth
+
+    color: #fff;
+    font-size: 15px;
+    background: #026451;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    .title {
+      text-align: center;
+      width: 40%;
+    }
+    @media screen and (max-width: $width_responsive) {
+      display: none;
+    }
+  }
+  .content-form-right {
+    .register-form {
+      input {
+        margin: 15px 0px 3px 0px;
+      }
+      button {
+        width: 100%;
+        margin: 20px 0;
+        height: 50px;
+        border: none;
+        border-radius: 10px;
+        background: black;
+        color: white;
+        &:hover {
+          background: rgb(92, 89, 89);
+        }
+      }
+      .back {
+        cursor: pointer;
+      }
+      .form-group.input-form-icon {
+        position: relative;
+        .icon {
+          cursor: pointer;
+          position: absolute;
+          right: 5px;
+          bottom: 8px;
+        }
+      }
+    }
+  }
+}
