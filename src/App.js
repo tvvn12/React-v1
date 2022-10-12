@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import "./App.scss";
-import Header from "./Header/Header";
+import Header from "./components/Header/Header";
 
 const App = () => {
   return (

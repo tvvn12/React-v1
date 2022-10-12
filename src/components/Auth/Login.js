@@ -3,22 +3,31 @@ import "./Login.scss";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../services/apiService";
 import { toast } from "react-toastify";
-
+import { useDispatch } from "react-redux";
+import { doLogion } from "../../redux/action/userAction";
+import { ImSpinner10 } from "react-icons/im";
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleLogin = async () => {
     //validate
     //submit
+    setIsLoading(true);
     let data = await postLogin(email, password);
 
     if (data && data.EC === 0) {
+      dispatch(doLogion(data));
       toast.success(data.EM);
+      setIsLoading(false);
       navigate("/");
     }
     if (data && +data.EC !== 0) {
       toast.error(data.EM);
+      setIsLoading(false);
     }
   };
   return (
@@ -58,8 +67,13 @@ const Login = (props) => {
         </div>
         <span className="forgot-password">Forgot Password ?</span>
         <div>
-          <button onClick={() => handleLogin()} className="btn-submit">
-            Login to HoiDanIT
+          <button
+            disabled={isLoading}
+            onClick={() => handleLogin()}
+            className="btn-submit"
+          >
+            {isLoading === true && <ImSpinner10 className="loader-icon" />}
+            <span>Login to HoiDanIT</span>
           </button>
         </div>
         <div className="text-center">
