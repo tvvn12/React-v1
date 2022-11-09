@@ -6,7 +6,11 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { doLogion } from "../../redux/action/userAction";
 import { ImSpinner10 } from "react-icons/im";
+import Language from "../Header/Language";
+import { useTranslation, Trans } from "react-i18next";
 const Login = (props) => {
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -30,6 +34,11 @@ const Login = (props) => {
       setIsLoading(false);
     }
   };
+  const handleKeyDown = (event) => {
+    if (event && event.key === "Enter") {
+      handleLogin();
+    }
+  };
   return (
     <div className="login-container">
       <div className="header  ">
@@ -39,8 +48,9 @@ const Login = (props) => {
             navigate("/register");
           }}
         >
-          Sign Up
+          {t("Auth.signup")}
         </button>
+        <Language />
       </div>
 
       <div className="title col-4 mx-auto">HoiDanIT</div>
@@ -48,7 +58,7 @@ const Login = (props) => {
 
       <div className="content-form col-4 mx-auto">
         <div className="form-group">
-          <label>Email</label>
+          <label> {t("Auth.email")}</label>
           <input
             value={email}
             onChange={(event) => setEmail(event.target.value)}
@@ -57,15 +67,16 @@ const Login = (props) => {
           />
         </div>
         <div className="form-group">
-          <label>Password</label>
+          <label> {t("Auth.password")}</label>
           <input
             onChange={(event) => setPassword(event.target.value)}
             value={password}
             type={"password"}
             className="form-control"
+            onKeyDown={(event) => handleKeyDown(event)}
           />
         </div>
-        <span className="forgot-password">Forgot Password ?</span>
+        <span className="forgot-password"> {t("Auth.forgot")}</span>
         <div>
           <button
             disabled={isLoading}
@@ -73,12 +84,12 @@ const Login = (props) => {
             className="btn-submit"
           >
             {isLoading === true && <ImSpinner10 className="loader-icon" />}
-            <span>Login to HoiDanIT</span>
+            <span>{t("Auth.button")}</span>
           </button>
         </div>
         <div className="text-center">
           <span className="back" onClick={() => navigate("/")}>
-            &#60;&#60; Go to Homepage
+            &#60;&#60; {t("Auth.back")}
           </span>
         </div>
       </div>

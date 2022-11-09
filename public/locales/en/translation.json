@@ -1,0 +1,60 @@
+{
+    "homepage": {
+        "title1": "There's a better way to ask ",
+        "title2": " You don't want to make a boring form. And your audience won't answer one. Create a typeform instead—and make everyone happy.",
+        "title3": "Get's started. Its's free",
+        "button": "Doing Quiz Now",
+        "home":"Home",
+        "user": "User",
+        "admin":"Admin"
+    },
+    "DetailQuiz":{
+        "title":"Quiz",
+        "button_1": "Prev",
+        "button_2": "Next",
+        "button_3": "Finish"
+    },
+    "Listquiz":{
+        "button":"Start Now",
+        "title": "You don't have Quiz now...",
+        "quiz":"Quiz "
+    },
+    "ModalResult":{
+        "title":"Your Result...",
+        "total": "Total Questions: ",
+        "answer":"Total Correct answers:",
+        "button_1":"Show Answer",
+        "button_2":"Close"
+    },
+    "Auth":{
+        "signup":"Sign Up",
+        "email":"Email",
+        "password":"Password",
+        "forgot":"Forgot Password ?"
+        ,"button":"Login to HoiDanIT",
+        "back":"Go to Homepage"
+
+    }
+    ,"Register":{
+        "title":"We received",
+        "title_1":"using Typeform than from aprofessionally commissioned market research study.",
+        "b":"3x the responses" ,
+        "title_3":"Get better data with conversational forms, surveys, quizzes & more.",
+        "email":"Email",
+        "password":"Password",
+        "back":"Go to Homepage",
+        "button":"Register",
+        "name": "Username"
+    }
+    ,"Admin":{
+        "profile":"Profile",
+        "log": "Log out"
+    },
+    "Dashboard":{
+        "dash":"Dashboard",
+        "mUser":"Manage Users",
+        "mQuiz":"Manage Quiz",
+        "mQues":"Manage Questions",
+        "Features":"Features"
+    }
+}

@@ -1,11 +1,15 @@
 import _ from "lodash";
 import { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { useParams, useLocation, NavLink } from "react-router-dom";
 import { getDataQuizId, postSubmitQuiz } from "../../services/apiService";
 import Question from "./Question";
 import "./DetailQuiz.scss";
 import ModalResult from "./ModalResult";
+import RightContent from "./Content/RightContent";
+import { useTranslation, Trans } from "react-i18next";
 const DetailQuiz = (props) => {
+  const { t } = useTranslation();
   const [dataQuiz, setDataQuiz] = useState([]);
   const [index, setIndex] = useState(0);
   const [isShowModalResult, setIsShowModalResult] = useState(false);
@@ -24,7 +28,7 @@ const DetailQuiz = (props) => {
       let data = _.chain(raw)
         // Group the elements of Array based on `color` property
         .groupBy("id")
-        // `key` is group's name (color), `value` is the array of objects
+        // `key` is group's name (id), `value` is the array of objects
         .map((value, key) => {
           let answers = [];
           let questionDescription,
@@ -37,6 +41,7 @@ const DetailQuiz = (props) => {
             item.answers.isSelected = false;
             answers.push(item.answers);
           });
+          answers = _.orderBy(answers, ["id"], ["asc"]);
           return { questionId: key, answers, questionDescription, image };
         })
         .value();
@@ -133,44 +138,61 @@ const DetailQuiz = (props) => {
     // console.log(payload);
   };
   return (
-    <div className="detail-quiz-container">
-      <div className="left-content">
-        <div className="title">
-          Quiz {quizId}: {location?.state?.quizTitle}
+    <>
+      <Breadcrumb className="quiz-de ps-5 pt-5">
+        <Breadcrumb.Item>
+          <NavLink to={"/"}>Home</NavLink>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <NavLink to={"/users"}>User</NavLink>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>Doing Quiz</Breadcrumb.Item>
+      </Breadcrumb>
+      <div className="detail-quiz-container">
+        <div className="left-content">
+          <div className="title">
+            {t("DetailQuiz.title")} {quizId}: {location?.state?.quizTitle}
+          </div>
+          <hr />
+          <div className="quiz-body">
+            <img />
+          </div>
+          <div className="quiz-content">
+            <Question
+              handleCheckBox={handleCheckBox}
+              index={index}
+              data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []}
+            />
+          </div>
+          <div className="footer d-flex justify-content-center gap-3">
+            <button className="btn btn-secondary" onClick={() => handlePrev()}>
+              {t("DetailQuiz.button_1")}
+            </button>
+            <button className="btn btn-primary" onClick={() => handleNext()}>
+              {t("DetailQuiz.button_2")}
+            </button>
+            <button
+              className="btn btn-warning"
+              onClick={() => handleFinishQuiz()}
+            >
+              {t("DetailQuiz.button_3")}
+            </button>
+          </div>
         </div>
-        <hr />
-        <div className="quiz-body">
-          <img />
-        </div>
-        <div className="quiz-content">
-          <Question
-            handleCheckBox={handleCheckBox}
-            index={index}
-            data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []}
+        <div className="right-content">
+          <RightContent
+            setIndex={setIndex}
+            handleFinishQuiz={handleFinishQuiz}
+            dataQuiz={dataQuiz}
           />
         </div>
-        <div className="footer d-flex justify-content-center gap-3">
-          <button className="btn btn-secondary" onClick={() => handlePrev()}>
-            Prev
-          </button>
-          <button className="btn btn-primary" onClick={() => handleNext()}>
-            Next
-          </button>
-          <button
-            className="btn btn-warning"
-            onClick={() => handleFinishQuiz()}
-          >
-            Finish
-          </button>
-        </div>
+        <ModalResult
+          show={isShowModalResult}
+          setShow={setIsShowModalResult}
+          dataModalResult={dataModalResult}
+        />
       </div>
-      <div className="right-content">count down</div>
-      <ModalResult
-        show={isShowModalResult}
-        setShow={setIsShowModalResult}
-        dataModalResult={dataModalResult}
-      />
-    </div>
+    </>
   );
 };
 export default DetailQuiz;

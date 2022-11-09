@@ -43,5 +43,43 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
+    .main-timer {
+      border-bottom: 1px dashed;
+      padding-bottom: 20px;
+      text-align: center;
+      padding-top: 10px;
+      font-weight: 600;
+      font-size: 20px;
+    }
+    .main-question {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      padding-top: 15px;
+      .question {
+        border: 1px solid rgb(119, 119, 119);
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        &:hover {
+          color: red;
+        }
+        &.selected {
+          background-color: #c6c6c6;
+        }
+        &.clicked {
+          background-color: red;
+        }
+      }
+    }
+  }
+}
+.quiz-de {
+  a {
+    text-decoration: none;
   }
 }

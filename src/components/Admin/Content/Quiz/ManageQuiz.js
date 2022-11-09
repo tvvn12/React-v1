@@ -10,6 +10,8 @@ import TableQuiz from "./TableQuiz";
 import Accordion from "react-bootstrap/Accordion";
 import ModalUpdateQuiz from "./ModalUpdateQuiz";
 import ModalDeleteQuiz from "./ModalDeleteQuiz";
+import QuizQA from "./QuizQA";
+import AssignQuiz from "./AssignQuiz";
 
 const ManageQuiz = (props) => {
   const [name, setName] = useState("");
@@ -134,17 +136,29 @@ const ManageQuiz = (props) => {
                 </div>
               </fieldset>
             </div>
+            <div className="list-detail">
+              <TableQuiz
+                listQuiz={listQuiz}
+                handleDeleteQuiz={handleDeleteQuiz}
+                handleEditQuiz={handleEditQuiz}
+              />
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>Update Q/A Quizzes</Accordion.Header>
+          <Accordion.Body>
+            <QuizQA />
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="2">
+          <Accordion.Header>Assign to Users</Accordion.Header>
+          <Accordion.Body>
+            <AssignQuiz />
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
 
-      <div className="list-detail">
-        <TableQuiz
-          listQuiz={listQuiz}
-          handleDeleteQuiz={handleDeleteQuiz}
-          handleEditQuiz={handleEditQuiz}
-        />
-      </div>
       <ModalUpdateQuiz
         show={showModalUpdateQuiz}
         setShow={setShowModalUpdateQuiz}

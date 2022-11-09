@@ -2,13 +2,23 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
+import { doLogout } from "../../redux/action/userAction";
+import { logout } from "../../services/apiService";
+import Language from "./Language";
+import { useTranslation, Trans } from "react-i18next";
+import ModalHearder from "./ModalHeader";
+import { useState } from "react";
 const Header = () => {
+  const [show, setShow] = useState(false);
+
+  const { t } = useTranslation();
+
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const account = useSelector((state) => state.user.account);
-
+  console.log(account);
   const navigate = useNavigate();
   const handleLogin = () => {
     navigate("/login");
@@ -16,7 +26,22 @@ const Header = () => {
   const handleRegiter = () => {
     navigate("/register");
   };
+  const dispatch = useDispatch();
+  const handleLogout = async () => {
+    let res = await logout(account.email, account.refresh_token);
+    if (res && res.EC === 0) {
+      toast.success(res.EM);
+      dispatch(doLogout());
+      navigate("/login");
+    } else {
+      toast.error(res.EM);
+    }
+  };
+  const handleProfile=()=>{
+    setShow(true)
+  }
   return (
+    <>
     <Navbar bg="light" expand="lg">
       <Container>
         <NavLink to="/" className="navbar-brand">
@@ -26,13 +51,13 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavLink to="/" className="nav-link">
-              Home
+              {t("homepage.home")}
             </NavLink>
             <NavLink to="/users" className="nav-link">
-              Users
+              {t("homepage.user")}
             </NavLink>
             <NavLink to="/admins" className="nav-link">
-              Admin
+              {t("homepage.admin")}
             </NavLink>
           </Nav>
           <Nav>
@@ -47,14 +72,19 @@ const Header = () => {
               </>
             ) : (
               <NavDropdown title="Settings" id="basic-nav-dropdown">
-                <NavDropdown.Item>Log out</NavDropdown.Item>
-                <NavDropdown.Item>Profile</NavDropdown.Item>
+                <NavDropdown.Item onClick={handleProfile}>Profile</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => handleLogout()}>
+                  Log out
+                </NavDropdown.Item>
               </NavDropdown>
             )}
+            <Language />
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <ModalHearder show={show} setShow={setShow}/>
+    </>
   );
 };
 

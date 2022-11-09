@@ -4,8 +4,12 @@ import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
-
+import Language from "../Header/Language";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { useTranslation, Trans } from "react-i18next";
 const Admin = (props) => {
+  const { t } = useTranslation();
+
   const [collapsed, setCollapsed] = useState(false);
   return (
     <div className="admin-container">
@@ -14,7 +18,17 @@ const Admin = (props) => {
       </div>
       <div className="admin-content">
         <div className="admin-header">
-          <FaBars onClick={() => setCollapsed(!collapsed)} />
+          <span className="leftside" onClick={() => setCollapsed(!collapsed)}>
+            <FaBars />
+          </span>
+          <div className="rightside">
+            <Language />
+
+            <NavDropdown title="Settings" id="basic-nav-dropdown">
+              <NavDropdown.Item>{t("Admin.profile")}</NavDropdown.Item>
+              <NavDropdown.Item>{t("Admin.log")}</NavDropdown.Item>
+            </NavDropdown>
+          </div>
         </div>
         <div className="admin-main">
           <PerfectScrollbar>

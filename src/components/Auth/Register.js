@@ -4,9 +4,12 @@ import { toast } from "react-toastify";
 import { postRegister } from "../../services/apiService";
 import { AiOutlineEye } from "react-icons/ai";
 import { BsEyeSlash } from "react-icons/bs";
-
+import { useTranslation, Trans } from "react-i18next";
 import "./Register.scss";
+import Language from "../Header/Language";
 const Register = () => {
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -27,20 +30,30 @@ const Register = () => {
     <div className="resgiter-container d-flex">
       <div className="content-form-left col-6">
         <div className="title">
-          "We received <b>3x the responses</b> using Typeform than from a
-          professionally commissioned market research study."
+          "{t("Register.title")} <b>{t("Register.b")} </b>{" "}
+          {t("Register.title_1")} "
         </div>
       </div>
-      <div className="content-form-right col-6 d-flex flex-column justify-content-center ">
+      <div className="content-form-right col-6 d-flex flex-column  ">
+        <div className="header">
+          <span>Don't have account yet?</span>
+          <button
+            className="btn btn-secondary"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Login
+          </button>
+          <Language />
+        </div>
         <div className="title_header text-center">
           <h1>Typeform</h1>
         </div>
-        <div className="title text-center">
-          Get better data with conversational forms, surveys, quizzes & more.
-        </div>
+        <div className="title text-center">{t("Register.title_3")}</div>
         <div className="register-form mx-auto">
           <div className="form-group">
-            <label>Email(*)</label>
+            <label> {t("Register.email")}(*)</label>
             <input
               value={email}
               onChange={(event) => setEmail(event.target.value)}
@@ -48,7 +61,7 @@ const Register = () => {
             />
           </div>
           <div className="form-group input-form-icon">
-            <label>Password(*) </label>
+            <label> {t("Register.password")}(*) </label>
             <input
               value={password}
               type={passwordShow ? "text" : "password"}
@@ -64,7 +77,7 @@ const Register = () => {
             </span>
           </div>
           <div className="form-group">
-            <label>Username</label>
+            <label>{t("Register.name")}</label>
             <input
               value={username}
               onChange={(event) => setUsername(event.target.value)}
@@ -73,10 +86,10 @@ const Register = () => {
           </div>
           <div>
             <button className="btn-register" onClick={() => handleRegister()}>
-              Register
+              {t("Register.button")}
             </button>
             <span className="back" onClick={() => navigate("/")}>
-              &#60;&#60; Go to Homepage
+              &#60;&#60; {t("Register.back")}
             </span>
           </div>
         </div>

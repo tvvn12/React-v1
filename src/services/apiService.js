@@ -1,3 +1,4 @@
+import axios from "axios";
 import axiosCustom from "../utils/axiosCustomize";
 
 const postCreateNewUser = (email, password, username, role, image) => {
@@ -33,7 +34,7 @@ const postLogin = (userEmail, userPassword) => {
   return axiosCustom.post(`api/v1/login`, {
     email: userEmail,
     password: userPassword,
-    delay: 5000,
+    
   });
 };
 const postRegister = (email, password, username) => {
@@ -78,6 +79,45 @@ const deleteQuiz = (quizId) => {
   // console.log(data);
   return axiosCustom.delete(`/api/v1/quiz/${quizId}`);
 };
+const postCreateNewQuestionForQuiz = (quizId, description, image) => {
+  const data = new FormData();
+  data.append("quiz_id", quizId);
+  data.append("description", description);
+  data.append("questionImage", image);
+
+  return axiosCustom.post(`/api/v1/question`, data);
+};
+const postCreateNewAnswerForQuestion = (
+  description,
+  correct_answer,
+  question_id
+) => {
+  return axiosCustom.post(`/api/v1/answer`, {
+    description,
+    correct_answer,
+    question_id,
+  });
+};
+
+const postAssignQuiz = (quizId, userId) => {
+  return axiosCustom.post(`/api/v1/quiz-assign-to-user`, {
+    quizId,
+    userId,
+  });
+};
+const getQuizWithQA = (quizId) => {
+  return axiosCustom.get(`/api/v1/quiz-with-qa/${quizId}`);
+};
+const postUpsertQA = (data) => {
+  console.log(data);
+  return axiosCustom.post(`/api/v1/quiz-upsert-qa`, { ...data });
+};
+const logout = (email, refresh_token) => {
+  return axiosCustom.post(`/api/v1/logout`, { email, refresh_token });
+};
+const getOverView = () => {
+  return axiosCustom.get(`/api/v1/overview`);
+};
 export {
   postCreateNewUser,
   getAllUsers,
@@ -93,4 +133,11 @@ export {
   getAllQuizForAdmin,
   putQuiz,
   deleteQuiz,
+  postCreateNewQuestionForQuiz,
+  postCreateNewAnswerForQuestion,
+  postAssignQuiz,
+  getQuizWithQA,
+  postUpsertQA,
+  logout,
+  getOverView,
 };

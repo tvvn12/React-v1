@@ -1,0 +1,62 @@
+{
+    "homepage": {
+        "title1": "Có nhiều cách để hỏi...",
+        "title2": "Google đi",
+        "title3": "Bắt đầu miễn phí ngay tại đây",
+        "button": "Làm ngay",
+        "home":"Trang chủ",
+        "user": "Người dùng",
+        "admin":"Quản trị"
+    },
+    "DetailQuiz":{
+        "title":"Câu hỏi",
+        "button_1": "Trở lại",
+        "button_2": "Tiếp theo",
+        "button_3": "Kết thúc"
+    } ,
+    "Listquiz":{
+        "button":"Bắt đầu",
+        "title": "Bạn không có câu hỏi nào cả.....",
+        "quiz":"Câu hỏi "
+        
+        
+    },
+    "ModalResult":{
+        "title":"Kết quả của bạn...",
+        "total": "Tổng số câu hỏi: ",
+        "answer":"Tổng số câu trả lời đúng:",
+        "button_1":"Xem đáp án",
+        "button_2":"Đóng"
+    },
+    "Auth":{
+        "signup":"Đăng kí",
+        "email":"Địa chỉ email",
+        "password":"Mật khẩu",
+        "forgot":"Quên mật khẩu ?"
+        ,"button":"Đăng nhập vào HoiDanIT",
+        "back":"Về trang chủ"
+    },"Register":{
+        "title":"Chúng tôi đã nhận được",
+        "title_1":"bằng cách sử dụng Typeform hơn là từ nghiên cứu thị trường được ủy quyền chuyên nghiệp.",
+        "b":"Gấp 3 lần câu trả lời" 
+        ,"title_3":"Nhận dữ liệu tốt hơn với các biểu mẫu trò chuyện, khảo sát, câu đố và hơn thế nữa."
+        ,
+        "email":"địa chỉ Email",
+        "password":"Mật khẩu",
+        "back":"Về trang chủ",
+        "button":"Đăng ký",
+        "name": "tên"
+    },
+    "Admin":{
+        "profile":"Hồ sơ",
+        "log": "Đăng xuất"
+    },
+    "Dashboard":{
+        "dash":"Bảng điều khiển",
+        "mUser":"Quản lý người dùng",
+        "mQuiz":"Quản lý Quiz",
+        "mQues":"Quản lý câu hỏi",
+        "Features":"Đặc điểm"
+    }
+
+}
