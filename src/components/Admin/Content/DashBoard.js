@@ -46,7 +46,6 @@ const DashBoard = (props) => {
     }
   };
 
-  console.log(dataOverView);
   return (
     <div className="dashboard-container">
       <div className="title">Ana dash</div>

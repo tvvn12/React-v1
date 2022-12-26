@@ -22,7 +22,7 @@ const Login = (props) => {
     //submit
     setIsLoading(true);
     let data = await postLogin(email, password);
-
+    console.log(data);
     if (data && data.EC === 0) {
       dispatch(doLogion(data));
       toast.success(data.EM);

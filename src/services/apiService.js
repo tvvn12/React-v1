@@ -109,7 +109,6 @@ const getQuizWithQA = (quizId) => {
   return axiosCustom.get(`/api/v1/quiz-with-qa/${quizId}`);
 };
 const postUpsertQA = (data) => {
-  console.log(data);
   return axiosCustom.post(`/api/v1/quiz-upsert-qa`, { ...data });
 };
 const logout = (email, refresh_token) => {
@@ -118,6 +117,12 @@ const logout = (email, refresh_token) => {
 const getOverView = () => {
   return axiosCustom.get(`/api/v1/overview`);
 };
+const postUpdateProfile =( username, userImage)=>{
+  const data = new FormData();
+  data.append("username", username);
+  data.append("userImage", userImage);
+  return axiosCustom.post(`/api/v1/profile`, data);
+}
 export {
   postCreateNewUser,
   getAllUsers,
@@ -140,4 +145,5 @@ export {
   postUpsertQA,
   logout,
   getOverView,
+  postUpdateProfile
 };

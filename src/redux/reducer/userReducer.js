@@ -1,6 +1,8 @@
 import {
   FETCH_USER_LOGIN_SUCCESS,
   USER_LOGOUT_SUCCESS,
+
+  
 } from "../action/userAction";
 const INITIAL_STATE = {
   account: {
@@ -19,15 +21,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         account: {
-          access_token: action?.payload?.DT?.access_token,
-          refresh_token: action?.payload?.DT?.refresh_token,
-          username: action?.payload?.DT?.username,
-          image: action?.payload?.DT?.image,
-          role: action?.payload?.DT?.role,
-          email: action?.payload.DT.email,
+          access_token: action?.payload?.DT?.access_token || action.payload.access_token,
+          refresh_token: action?.payload?.DT?.refresh_token || action.payload.refresh_token,
+          username: action?.payload?.DT?.username || action.payload.username,
+          image: action?.payload?.DT?.image || action.payload.image,
+          role: action?.payload?.DT?.role || action.payload.role,
+          email: action?.payload?.DT?.email|| action.payload.email,
         },
         isAuthenticated: true,
       };
+      
     case USER_LOGOUT_SUCCESS:
       return {
         ...state,
@@ -41,7 +44,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         },
         isAuthenticated: false,
       };
-
+   
     default:
       return state;
   }

@@ -9,6 +9,13 @@ const instance = axios.create({
   baseURL: "http://localhost:8081/",
 });
 
+
+function Calculator(a,b){
+  return a+b;
+}
+
+Calculator(1,2);
+
 // Add a request interceptor
 instance.interceptors.request.use(
   function (config) {

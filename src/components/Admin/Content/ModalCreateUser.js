@@ -30,6 +30,7 @@ const ModalMangeUser = (props) => {
       setImage(event.target.files[0]);
     }
   };
+ 
 
   const validateEmail = (email) => {
     return String(email)
